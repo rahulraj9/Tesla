@@ -2,21 +2,30 @@ import React,{useState} from 'react'
 import styled, { css } from 'styled-components';
 import MenuIcon from '@material-ui/icons/Menu'
 import CloseIcon from '@material-ui/icons/Close'
-import Fade from 'react-reveal/Fade';
+import {selectCars} from '../Redux/Cars/CarSlice'
+import {useSelector} from 'react-redux'
+
 function AppBar() {
     const[burgerStatus,setBurgerStatus]=useState(false)
+    const cars = useSelector(selectCars)
+    console.log(cars);
     return (
         <Container>
             <a>
                 <img src="images/logo.svg" alt="Tesla" />
             </a>
             <Menu>
-                 <a href="#">MODEL S</a> 
+                {cars && cars.map((car,index)=>(
+                    <a href="#">{car}</a> 
+
+                )
+                )}
+                 {/* <a href="#">MODEL S</a> 
                  <a href="#">MODEL 3</a> 
                  <a href="#">MODEL X</a> 
                  <a href="#">MODEL Y</a> 
                  <a href="#">SOLAR ROOF</a> 
-                 <a href="#">SOLAR PANNEL</a> 
+                 <a href="#">SOLAR PANNEL</a>  */}
             </Menu>
 
             <RightMenu>
@@ -104,6 +113,7 @@ display:flex;
 flex-direction:column;
 text-align:start;
 transform:${props=>props.show ? 'translateX(0)':'translateX(100%)'};
+transition:transform 0.4s ease-in;
 li{
     padding:15px 0;
     border-bottom:1px solid rgba(0, 0, 0, .2);

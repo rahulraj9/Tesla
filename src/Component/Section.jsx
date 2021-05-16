@@ -4,6 +4,7 @@ import Fade from 'react-reveal/Fade';
 function Section({ title, Description, LeftBtnTxt, RightBtnTxt, backgroundImg }) {
 
     return (
+        <Fade bottom>
         <Wrap bgImage={backgroundImg}>
 
             <Fade bottom>
@@ -28,6 +29,7 @@ function Section({ title, Description, LeftBtnTxt, RightBtnTxt, backgroundImg })
 
             </Buttons>
         </Wrap>
+        </Fade>
     )
 }
 
@@ -45,6 +47,7 @@ display:flex;
 flex-direction:column;
 justify-content:space-between;
 align-items:center;
+
 background-image: ${props => `url("images/${props.bgImage}")`}
 `
 
