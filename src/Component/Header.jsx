@@ -1,9 +1,10 @@
-import React from 'react'
+import React,{useState} from 'react'
 import styled, { css } from 'styled-components';
 import MenuIcon from '@material-ui/icons/Menu'
 import CloseIcon from '@material-ui/icons/Close'
 import Fade from 'react-reveal/Fade';
 function AppBar() {
+    const[burgerStatus,setBurgerStatus]=useState(false)
     return (
         <Container>
             <a>
@@ -21,10 +22,12 @@ function AppBar() {
             <RightMenu>
                  <a href="#">SHOP</a> 
                  <a href="#">TESLA ACCOUNT</a> 
-                <CustomMenu/>
+                <CustomMenu
+                onClick={()=>setBurgerStatus(true)}
+                />
             </RightMenu>
-            <BurgerNav>
-                <Closewrapper><Customclose/></Closewrapper>
+            <BurgerNav show={burgerStatus}>
+                <Closewrapper><Customclose  onClick={()=>setBurgerStatus(false)}/></Closewrapper>
                 
                 <li><a href="#">EXISTING INVENTORY</a></li>
                 <li><a href="#">USED INVENTORY</a></li>
@@ -100,6 +103,7 @@ padding:20px;
 display:flex;
 flex-direction:column;
 text-align:start;
+transform:${props=>props.show ? 'translateX(0)':'translateX(100%)'};
 li{
     padding:15px 0;
     border-bottom:1px solid rgba(0, 0, 0, .2);
@@ -113,4 +117,4 @@ const Customclose = styled(CloseIcon)`
 
 const Closewrapper = styled.div`
 display:flex;
-flex-direction:row-reverse;`
+justify-content:flex-end`
