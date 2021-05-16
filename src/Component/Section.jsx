@@ -4,7 +4,6 @@ import Fade from 'react-reveal/Fade';
 function Section({ title, Description, LeftBtnTxt, RightBtnTxt, backgroundImg }) {
 
     return (
-        <Fade bottom>
         <Wrap bgImage={backgroundImg}>
 
             <Fade bottom>
@@ -13,7 +12,6 @@ function Section({ title, Description, LeftBtnTxt, RightBtnTxt, backgroundImg })
                     <p>{Description}</p>
                 </ItemText>
             </Fade>
-
             <Buttons>
                 <Fade bottom>
                     <ButtonGroup>
@@ -29,7 +27,6 @@ function Section({ title, Description, LeftBtnTxt, RightBtnTxt, backgroundImg })
 
             </Buttons>
         </Wrap>
-        </Fade>
     )
 }
 
