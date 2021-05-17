@@ -1,8 +1,13 @@
 import React from 'react'
 import styled, { css } from 'styled-components';
 import Fade from 'react-reveal/Fade';
+import "fullpage.js/vendors/scrolloverflow"; // Optional. When using scrollOverflow:true
+import ReactFullpage from "@fullpage/react-fullpage";
+
+
 function Section({ title, Description, LeftBtnTxt, RightBtnTxt, backgroundImg }) {
 
+          
     return (
         <Wrap bgImage={backgroundImg}>
 
@@ -28,6 +33,7 @@ function Section({ title, Description, LeftBtnTxt, RightBtnTxt, backgroundImg })
             </Buttons>
         </Wrap>
     )
+    
 }
 
 export default Section
@@ -39,12 +45,10 @@ height:100vh;
 background-size:cover;
 background-position:center;
 background-repeat:no-repeat;
-
 display:flex;
 flex-direction:column;
 justify-content:space-between;
 align-items:center;
-
 background-image: ${props => `url("images/${props.bgImage}")`}
 `
 
@@ -72,6 +76,7 @@ opacity:0.85;
 font-size:12px;
 cursor:pointer;
 margin:8px`
+
 const RightButton = styled(LeftButton)`
 background:white;
 opacity:0.65;

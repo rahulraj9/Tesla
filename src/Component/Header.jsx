@@ -1,26 +1,30 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import styled, { css } from 'styled-components';
 import MenuIcon from '@material-ui/icons/Menu'
 import CloseIcon from '@material-ui/icons/Close'
-import {selectCars} from '../Redux/Cars/CarSlice'
-import {useSelector} from 'react-redux'
+import { selectCars } from '../Redux/Cars/CarSlice'
+import { useSelector } from 'react-redux'
+
+import { useHistory } from "react-router";
+
 
 function AppBar() {
-    const[burgerStatus,setBurgerStatus]=useState(false)
+    let history = useHistory();
+    const [burgerStatus, setBurgerStatus] = useState(false)
     const cars = useSelector(selectCars)
     console.log(cars);
     return (
         <Container>
-            <a>
+             <Typography onClick={(e) => history.push("/home")}>
                 <img src="images/logo.svg" alt="Tesla" />
-            </a>
+            </Typography>
             <Menu>
-                {cars && cars.map((car,index)=>(
+                {cars && cars.map((car, index) => (
                     <a href="#">{car}</a> 
 
                 )
                 )}
-                 {/* <a href="#">MODEL S</a> 
+                {/* <a href="#">MODEL S</a> 
                  <a href="#">MODEL 3</a> 
                  <a href="#">MODEL X</a> 
                  <a href="#">MODEL Y</a> 
@@ -29,30 +33,33 @@ function AppBar() {
             </Menu>
 
             <RightMenu>
-                 <a href="#">SHOP</a> 
-                 <a href="#">TESLA ACCOUNT</a> 
+                <a href="">SHOP</a>
+                <Typography onClick={(e) => history.push("/login")}>
+                    <a href="" >TESLA ACCOUNT</a>
+                </Typography>
+
                 <CustomMenu
-                onClick={()=>setBurgerStatus(true)}
+                    onClick={() => setBurgerStatus(true)}
                 />
             </RightMenu>
             <BurgerNav show={burgerStatus}>
-                <Closewrapper><Customclose  onClick={()=>setBurgerStatus(false)}/></Closewrapper>
-                
-                <li><a href="#">EXISTING INVENTORY</a></li>
-                <li><a href="#">USED INVENTORY</a></li>
-                <li><a href="#">TRADE-IN</a></li>
-                <li><a href="#">CYBERTRUCK</a></li>
-                <li><a href="#">ROADSTER</a></li>
-                <li><a href="#">SEMI</a></li>
-                <li><a href="#">CHARGING</a></li>
-                <li><a href="#">POWERWALL</a></li>
-                <li><a href="#">COMMERCIAL ENERGY</a></li>
-                <li><a href="#">UTILITIES</a></li>
-                <li><a href="#">TEST DRIVE</a></li>
-                <li><a href="#">FIND US</a></li>
-                <li><a href="#">SUPPORT</a></li>
-                <li><a href="#">Hamburger Mobile Secondary</a></li>
-                <li><a href="#">UNITED STATES</a></li>
+                <Closewrapper><Customclose onClick={() => setBurgerStatus(false)} /></Closewrapper>
+                <h5>
+                    <li><a href="#">EXISTING INVENTORY</a></li>
+                    <li><a href="#">USED INVENTORY</a></li>
+                    <li><a href="#">TRADE-IN</a></li>
+                    <li><a href="#">CYBERTRUCK</a></li>
+                    <li><a href="#">ROADSTER</a></li>
+                    <li><a href="#">SEMI</a></li>
+                    <li><a href="#">CHARGING</a></li>
+                    <li><a href="#">POWERWALL</a></li>
+                    <li><a href="#">COMMERCIAL ENERGY</a></li>
+                    <li><a href="#">UTILITIES</a></li>
+                    <li><a href="#">TEST DRIVE</a></li>
+                    <li><a href="#">FIND US</a></li>
+                    <li><a href="#">SUPPORT</a></li>
+                    <li><a href="#">UNITED STATES</a></li>
+                </h5>
             </BurgerNav>
         </Container>
     )
@@ -72,6 +79,9 @@ left:0;
 right:0;
 z-index:1;
 `
+const Typography = styled.div`
+cursor:pointer;
+`
 const Menu = styled.div`
 display:flex;
 align-items:center;
@@ -85,7 +95,7 @@ a{
 @media(max-width:768px){
     display:none;
 }
-` 
+`
 const RightMenu = styled.div`
 display:flex;
 align-items:center;
@@ -99,12 +109,13 @@ a{
 const CustomMenu = styled(MenuIcon)`
 cursor:pointer;
 `
-const BurgerNav  = styled.div`
+const BurgerNav = styled.div`
 position:fixed;
 top:0;
 bottom:0;
 right:0;
 background:white;
+-webkit-scrollbar {display:none;};
 width:300px;
 z-index:16;
 list-style:none;
@@ -112,7 +123,7 @@ padding:20px;
 display:flex;
 flex-direction:column;
 text-align:start;
-transform:${props=>props.show ? 'translateX(0)':'translateX(100%)'};
+transform:${props => props.show ? 'translateX(0)' : 'translateX(100%)'};
 transition:transform 0.4s ease-in;
 li{
     padding:15px 0;

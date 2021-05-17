@@ -1,11 +1,17 @@
 import React from 'react'
 import styled, { css } from 'styled-components';
 import Section from './Section';
-
+import Fade from 'react-reveal/Fade'
+import "fullpage.js/vendors/scrolloverflow"; // Optional. When using scrollOverflow:true
+import ReactFullpage from "@fullpage/react-fullpage";
+import Header from './Header'
 function Home() {
     return (
         <div>
+            <Header/>
+  
             <Container>
+
                 <Section
                     title="Model S"
                     Description=" Order Online for Touchless Delivery"
@@ -13,6 +19,7 @@ function Home() {
                     RightBtnTxt="EXISTING INVENTORY"
                     backgroundImg="model-s.jpg"
                 />
+              
                 <Section
                     title="Model y"
                     Description=" Order Online for Touchless Delivery"
@@ -20,6 +27,7 @@ function Home() {
                     RightBtnTxt="EXISTING INVENTORY"
                     backgroundImg="model-y.jpg"
                 />
+               
                   <Section
                     title="Model 3"
                     Description=" Order Online for Touchless Delivery"
